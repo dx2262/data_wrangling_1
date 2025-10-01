@@ -123,16 +123,44 @@ drop_na(litters_df, gd0_weight)
 ```
 
 
+## 'mutate'
+
+use 'mutate()' to modify or create variables
+
+```{r}
+mutate(
+  litters_df,
+  wt_gain = gd18_weight - gd0_weight,
+  group = str_to_lower(group)
+)
+```
 
 
+## 'arrange'
+
+'arrange()' arranges things
+
+```{r}
+arrange(litters_df, pups_born_alive)
+arrange(litters_df, group, pups_born_alive)
+arrange(litters_df, desc(pups_born_alive))
+```
 
 
+## Pipes
 
+Use pipes to avoid clunky stuffs
 
-
-
-
-
+```{r}
+litters_df = 
+  read_csv("data/FAS_litters.csv", na = c("NA", ".", "")) %>% 
+  janitor::clean_names() %>% 
+  select(group, litter_number, starts_with("gd")) %>% 
+  drop_na() %>% 
+  mutate(
+    wt_gain = gd18_weight - gd0_weight
+  )
+```
 
 
 
