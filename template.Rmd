@@ -89,6 +89,11 @@ pulse_df <-
 ```
 
 
+## What about data exporting?
+
+```{r}
+write_csv(fotr_df, "data/fotr_df.csv")
+```
 
 
 
