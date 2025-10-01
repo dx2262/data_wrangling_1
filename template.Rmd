@@ -6,6 +6,8 @@ output: git_document
 
 ```{r}
 library(tidyverse)
+library(readxl)
+library(haven)
 ```
 
 Let's import a dataset.
@@ -51,12 +53,40 @@ pups_df <-
   read_csv("data/FAS_pups.csv", na = c("NA", ".", ""), skip = 3)
 ```
 
+```{r}
+pups_df <- 
+  janitor::clean_names(pups_df)
+```
 
 
+## Okay what about Excel? 
+CSVs are really great but sometimes you get an Excel file.
 
+```{r}
+mlb_df <- 
+  read_excel("data/mlb11.xlsx")
+```
 
+Import LotR words count.
 
+```{r}
+fotr_df <- 
+  read_excel("data/LotR_Words.xlsx", range = "B3:D6")
+```
 
+## Import SAS??
+
+Import the pulse data.
+
+```{r}
+pulse_df <- 
+  read_sas("data/public_pulse_data.sas7bdat")
+```
+
+```{r}
+pulse_df <- 
+  janitor::clean_names(pulse_dfpulse_df)
+```
 
 
 
